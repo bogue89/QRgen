@@ -1,64 +1,38 @@
-Codeigniter PHP QR Code
+PHP QR generator Code
 =======================
 
-Version 1 - Dec 2011
-by dwi.setiyadi@gmail.com
+Version 1
+Jul 2014
+by /bogue89
 
 
 
-Introduction
-------------
+Intro
+-----
 
-This a library for CodeIgniter Framework to make QR Code from some string given, a porting code from http://phpqrcode.sourceforge.net/.
-
-
-Installation and Requirements
------------------------------
-
-This library requires CodeIgniter Framework and GD2 PHP extension.
+This is a class for simple use and modification of the library found on http://phpqrcode.sourceforge.net/
 
 
-### How to use ###
+###How to use
 
-On the fly generate
+Include the QRgen.php file, and your ready to use it.
 
-	$this->load->library('ciqrcode');
+You can set several properties for the class to generate custom QRs like follow:
 	
-	header("Content-Type: image/png");
-	$params['data'] = 'This is a text to encode become QR Code';
-	$this->ciqrcode->generate($params);
-
-
-
-Saved QR Code image example
-
-	$this->load->library('ciqrcode');
+	var $config = array(
+		'cacheable' => 	true,
+		'cachedir' 	=> 	'QRgen/cache/',
+		'errorlog' 	=>	'QRgen/logs/',
+		'quality' 	=>	true,
+		'size'		=> 	8,
+		'level'		=> 	'M',
+		'margin'	=> 	2, 
+		'black'		=>	array(0,0,0),
+		'white'		=>	array(255,255,255),
+		'savename'	=>	NULL,
+		'logo'		=>	NULL,
+		'logoscale'	=>	0.7,
+	);
 	
-	$params['data'] = 'This is a text to encode become QR Code';
-	$params['level'] = 'H';
-	$params['size'] = 10;
-	$params['savename'] = FCPATH.'tes.png';
-	$this->ciqrcode->generate($params);
-	
-	echo '<img src="'.base_url().'tes.png" />';
-
-
-
-Optional configuration
-
-	$this->load->library('ciqrcode');
-	
-	$config['cacheable']	= true; //boolean, the default is true
-	$config['cachedir']		= ''; //string, the default is application/cache/
-	$config['errorlog']		= ''; //string, the default is application/logs/
-	$config['quality']		= true; //boolean, the default is true
-	$config['size']			= ''; //interger, the default is 1024
-	$config['black']		= array(224,255,255); // array, default is array(255,255,255)
-	$config['white']		= array(70,130,180); // array, default is array(0,0,0)
-	$this->ciqrcode->initialize($config);
-
-
-Contributors
-------------
-1. [Jared Hatfield](https://github.com/JaredHatfield "Jared Hatfield")
-2. [Collin Price](https://github.com/collinprice "Collin Price")
+pass it in the constructor for general setting
+or in every ->generate($config) for just once configuration
